@@ -154,8 +154,8 @@ module.exports = function(grunt) {
 			}
 		},
 		concurrent: {
-			default: ['nodemon', 'watch'],
-			debug: ['nodemon', 'watch', 'node-inspector'],
+			default: ['nodemon','less:development', 'watch'],
+			debug: ['nodemon', 'less:development', 'watch', 'node-inspector'],
 			options: {
 				logConcurrentOutput: true,
 				limit: 10
@@ -211,7 +211,7 @@ module.exports = function(grunt) {
 	grunt.registerTask('lint', ['jshint', 'csslint']);
 
 	// Build task(s).
-	grunt.registerTask('build', ['lint', 'loadConfig', 'ngAnnotate', 'uglify', 'cssmin']);
+	grunt.registerTask('build', ['lint', 'less:development', 'loadConfig', 'ngAnnotate', 'uglify', 'cssmin']);
 
 	// Test task.
 	grunt.registerTask('test', ['test:server', 'test:client']);
