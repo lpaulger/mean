@@ -4,8 +4,8 @@ module.exports = {
 	db: {
 		uri: process.env.MONGOHQ_URL || process.env.MONGOLAB_URI || 'mongodb://' + (process.env.DB_1_PORT_27017_TCP_ADDR || 'localhost') + '/mean',
 		options: {
-			user: '',
-			pass: ''
+			user: process.env.MONGOLAB_USER,
+			pass: process.env.MONGOLAB_PASS
 		}
 	},
 	log: {
@@ -19,10 +19,7 @@ module.exports = {
 	},
 	assets: {
 		lib: {
-			css: [
-				'public/lib/bootstrap/dist/css/bootstrap.min.css',
-				'public/lib/bootstrap/dist/css/bootstrap-theme.min.css',
-			],
+			css: [],
 			js: [
 				'public/lib/angular/angular.min.js',
 				'public/lib/angular-resource/angular-resource.min.js',

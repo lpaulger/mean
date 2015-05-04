@@ -11,6 +11,11 @@
 		"angular-bootstrap": "~0.11.2",
 		"angular-bootstrap": "~0.12.0",
 		"angular-ui-utils": "~0.1.1",
-		"angular-ui-router": "~0.2.11"
-	}
+		"angular-ui-router": "~0.2.11",
+    "font-awesome": "4.3.0",
+    "bootstrap-social": "~4.8.0"
+  },
+  "resolutions": {
+    "font-awesome": "4.3.0"
+  }
 }

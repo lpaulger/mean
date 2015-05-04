@@ -7,6 +7,7 @@ module.exports = {
 		keywords: 'mongodb, express, angularjs, node.js, mongoose, passport'
 	},
 	port: process.env.PORT || 3000,
+	analyticsId: process.env.ANALYTICS_ID || 'UA-XXXXXXXX-X',
 	templateEngine: 'swig',
 	// The secret should be set to a non-guessable string that
 	// is used to compute a session hash
@@ -42,10 +43,7 @@ module.exports = {
 	},
 	assets: {
 		lib: {
-			css: [
-				'public/lib/bootstrap/dist/css/bootstrap.css',
-				'public/lib/bootstrap/dist/css/bootstrap-theme.css',
-			],
+			css: [],
 			js: [
 				'public/lib/angular/angular.js',
 				'public/lib/angular-resource/angular-resource.js',

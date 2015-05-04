@@ -59,6 +59,10 @@ var UserSchema = new Schema({
 		default: '',
 		validate: [validateLocalStrategyPassword, 'Password should be longer']
 	},
+	picture: {
+		type: String,
+		default: ''
+	},
 	salt: {
 		type: String
 	},
@@ -98,6 +102,12 @@ UserSchema.pre('save', function(next) {
 	if (this.password && this.password.length > 6) {
 		this.salt = crypto.randomBytes(16).toString('base64');
 		this.password = this.hashPassword(this.password);
+	}
+
+	//if no picture is defined, use gravatar base path
+	if(!this.picture){
+		var md5 = crypto.createHash('md5').update(this.email).digest('hex');
+		this.picture = 'https://gravatar.com/avatar/' + md5;
 	}
 
 	next();

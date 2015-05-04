@@ -8,6 +8,7 @@ module.exports = function(grunt) {
 		clientViews: ['public/modules/**/views/**/*.html'],
 		clientJS: ['public/js/*.js', 'public/modules/**/*.js'],
 		clientCSS: ['public/modules/**/*.css'],
+		clientLESS: ['public/modules/**/*.less'],
 		mochaTests: ['app/tests/**/*.js']
 	};
 
@@ -48,6 +49,10 @@ module.exports = function(grunt) {
 					livereload: true
 				}
 			},
+			clientLESS: {
+				files: watchFiles.clientLESS,
+				tasks: ['less:development']
+			},
 			mochaTests: {
 				files: watchFiles.mochaTests,
 				tasks: ['test:server'],
@@ -59,6 +64,38 @@ module.exports = function(grunt) {
 				options: {
 					jshintrc: true
 				}
+			}
+		},
+		less: {
+			development: {
+				options: {
+					plugins: [
+						new (require('less-plugin-autoprefix'))({browsers: ['last 2 versions']}),
+						new (require('less-plugin-clean-css'))({advanced: true})
+					]
+				},
+				files: [{
+						expand: true,
+						cwd: 'public/modules/',
+						src: ['**/css/*.less'],
+						dest: 'public/modules/',
+						ext: '.css'
+				}]
+			},
+			production: {
+				options: {
+					plugins: [
+		        new (require('less-plugin-autoprefix'))({browsers: ['last 2 versions']}),
+		        new (require('less-plugin-clean-css'))({advanced: true})
+		      ]
+				},
+				files: [{
+						expand: true,
+						cwd: 'public/modules/',
+						src: ['**/css/*.less'],
+						dest: 'public/modules/',
+						ext: '.css'
+				}]
 			}
 		},
 		csslint: {
